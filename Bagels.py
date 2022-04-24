@@ -1,7 +1,7 @@
 from random import randint
 
 
-def welcome():  # приветствие, правила
+def welcome():  # приветствие
     print('''I am thinking of a 3-digit number. Try to guess what it is.
     Here are some clues:''')
     print('''When I say: That means:
