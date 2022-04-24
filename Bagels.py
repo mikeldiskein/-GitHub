@@ -21,8 +21,7 @@ def game():  # собственно, сама игра
         continue_game()
     for i in attempt:
         if i in number:
-
-
+            pass
 
 
 def continue_game():  # предложение сыграть ещё раз...
