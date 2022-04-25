@@ -29,7 +29,6 @@ def game():  # собственно, сама игра
             attempt = input('Incorrect answer. Try again!')
         tries -= 1
         if attempt != number:
-            flag = True
             for i in attempt:
                 if i in number:
                     if attempt.find(i) == number.find(i):
@@ -37,9 +36,8 @@ def game():  # собственно, сама игра
                     elif attempt.find(i) != number.find(i):
                         print('Pico', end=' ')
                 else:
-                    flag = False
-            if not flag:
-                print('Bagels')
+                    print('Bagels', end=' ')
+            print()
         elif attempt == number:
             print('You got it!')
             break
@@ -49,6 +47,7 @@ def game():  # собственно, сама игра
         game()
 
 
+welcome()
 game()
 
 
