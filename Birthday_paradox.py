@@ -1,12 +1,12 @@
-from datetime import date
-from random import randint
+from datetime import date  # подключаю модуль datetime, класс date
+from random import randint  # подключаю модуль random
 
 
-start = date(2022, 1, 1).toordinal()
-end = date(2022, 12, 31).toordinal()
+start = date(2022, 1, 1).toordinal()  # нижний диапазон для генерации случайной даты (в пролептическом виде)
+end = date(2022, 12, 31).toordinal()  # верхний диапазон
 
 
-def begin():
+def begin():  # функция приветствия
     print('''Давайте проведём эксперимент по имитационному моделированию! Люблю такое, я ж в определённом смысле 
 искусственный интеллект, чтоб меня. Давайте представим, что есть определённое количество человек, каждый из которых 
 называет дату своего рождения (месяц и день).
@@ -17,28 +17,28 @@ def begin():
 P.S однако слишком увлекаться не советую: я могу надолго зависнуть :)''')
 
 
-def if_again():
+def if_again():  # функция, возвращающая True, если пользователь хочет вычислить ещё раз
     print()
     return input('Хотите попробовать ещё раз? YES or NO').lower() == 'yes'
 
 
-def work():
+def work():  # основная функция программы
     dates = int(input('Введите количество человек в группе'))
     n = int(input('Введите количество итераций'))
-    coin = 0
-    for i in range(1, n+1):
-        days = [date.fromordinal(randint(start, end)).ctime().split() for _ in range(dates)]
-        birthdays = list(map(lambda x: tuple(x[1:3]), days))
-        pure_birthdays = set(birthdays)
-        if len(birthdays) > len(pure_birthdays):
+    coin = 0  # в этой переменной будет храниться количество итераций, в которых совпадают даты
+    for i in range(1, n+1):  # запуск итерирования
+        days = [date.fromordinal(randint(start, end)).ctime().split() for _ in range(dates)]  # список с датами
+        birthdays = list(map(lambda x: tuple(x[1:3]), days))  # преобразование списка списков в список кортежей
+        pure_birthdays = set(birthdays)  # создание множества из списка
+        if len(birthdays) > len(pure_birthdays):  # сравнение длин списка и множества для выявления совпадений
             coin += 1
-        if i % 10000 == 0:
+        if i % 10000 == 0:  # программа докладывает о ходе работы каждые 10000 итераций
             print(f'Работаю. Выполнено итераций: {i}...')
     percent = coin / n * 100
     print('Готово!')
     print(f'За {n} итераций мы получили {coin} совпадений (что хотя бы два человека из {dates} родились в одну и ту же дату)')
     print(f'Вероятность при основании подсчёта {dates} равна {percent}%')
-    if if_again():
+    if if_again():  # если функция возвращает True, функция work запускается заново
         work()
 
 
