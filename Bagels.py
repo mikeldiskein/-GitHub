@@ -24,14 +24,14 @@ def game():  # собственно, сама игра
     tries = 10  # количество попыток
     print('I have thought a number!')
     while tries > 0:
-        attempt = input('Write a number. Try to guess!')  # игрок вводит число
-        while not attempt.isdigit() and len(attempt) != 3:
+        attempt = input('Write a number. Try to guess!')  # игрок вводит число в формате строки
+        while not attempt.isdigit() and len(attempt) != 3:  # проверка на валидность
             attempt = input('Incorrect answer. Try again!')
         tries -= 1
         if attempt != number:
-            for i in attempt:
+            for i in attempt:  # поочерёдная проверка цифр на соответствие цифрам загаданного числа
                 if i in number:
-                    if attempt.find(i) == number.find(i):
+                    if attempt.find(i) == number.find(i):  #сравнение индексов цифр в числе
                         print("Fermi", end=' ')
                     elif attempt.find(i) != number.find(i):
                         print('Pico', end=' ')
