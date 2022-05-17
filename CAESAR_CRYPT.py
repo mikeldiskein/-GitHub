@@ -78,17 +78,21 @@ def game():  # сама игра, собственно
         print('See you again!')
 
 
-print('Приветствую Вас! Меня зовут Фейнман, и я предлагаю вам '  # приветствие и предложение сыграть
-      'зашифровать или дешифровать какое-нибудь слово или'
-      'предложение. Вы можете использовать как английский, так '
-      'и русский язык')
-answer = input("Do you want to try? Write 'yes'('да') or 'no'('нет')").lower()
-while answer not in good_answers and answer not in bad_answers:
-    answer = input("Write 'yes'('да') or 'no'('нет')")
-if answer == 'yes' or 'да':
-    game()
-else:
-    print('Well, see you later!')
+def begin():
+    print('Приветствую Вас! Меня зовут Фейнман, и я предлагаю вам '  # приветствие и предложение сыграть
+          'зашифровать или дешифровать какое-нибудь слово или'
+          'предложение. Вы можете использовать как английский, так '
+          'и русский язык')
+    answer = input("Do you want to try? Write 'yes'('да') or 'no'('нет')").lower()
+    while answer not in good_answers and answer not in bad_answers:
+        answer = input("Write 'yes'('да') or 'no'('нет')")
+    if answer == 'yes' or 'да':
+        game()
+    else:
+        print('Well, see you later!')
+
+
+begin()
 
 
 
