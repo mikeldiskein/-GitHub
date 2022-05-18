@@ -83,7 +83,7 @@ def begin():
     answer = input("Do you want to try? Write 'yes'('да') or 'no'('нет')").lower()
     while answer not in good_answers and answer not in bad_answers:
         answer = input("Write 'yes'('да') or 'no'('нет')")
-    if answer == 'yes' or 'да':
+    if answer in good_answers:
         game()
     else:
         print('Well, see you later!')
