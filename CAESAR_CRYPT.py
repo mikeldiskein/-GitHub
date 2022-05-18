@@ -68,9 +68,6 @@ def game():  # сама игра, собственно
     direction = input("Write what I should do: 'encrypt' ('шифровка') or 'decrypt' ('дешифровка')")
     while direction not in ('encrypt', 'decrypt', 'шифровка', 'дешифровка'):
         direction = input("'encrypt' ('шифровка') or 'decrypt' ('дешифровка')")
-    ready = input('Are you ready?')
-    while ready not in good_answers and ready not in bad_answers:
-        ready = input('Reply exactly')
     print(crypt(p=phrase, k=k, d=direction))
     if continue_game():
         game()
