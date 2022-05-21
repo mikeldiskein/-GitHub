@@ -16,7 +16,8 @@ def continue_game():
         elif reply in bad_answers:
             return False
         else:
-            reply = input("Write please 'yes'('да') or 'no'('нет')")
+            print("Write please 'yes'('да') or 'no'('нет')")
+            continue
 
 
 def hack(phrase, language):
