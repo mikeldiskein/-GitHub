@@ -1,4 +1,3 @@
-import datetime
 from datetime import date, timedelta  # import modul of date and function of timedelta
 
 # constants
@@ -25,13 +24,13 @@ while True:
 
 def generate_calendar(month, year):
     cal_text = ''  # here it will be a calendar in text type
-    cal_text += (' ' * 25) + months[month - 1] + ' ' + str(year) + '\n'
+    cal_text += (' ' * 25) + months[month - 1] + ' ' + year + '\n'
     cal_text += '...SUN.....MON.....TUE.....WED.....THU.....FRI.....SAT...\n'
     week_separator = ('+-------' * 7) + '+\n'  # string-separator
     empty_row = ('|       ' * 7) + '|\n'
 
     current_date = date(int(year), month, 1)  # first number of our date
-    while current_date.weekday() != 6:
+    while current_date.weekday() != 6:  # because Sunday in weekday code is 6
         current_date -= timedelta(days=1)
     while True:  # pass by the loop along all weeks in the month
         cal_text += week_separator
