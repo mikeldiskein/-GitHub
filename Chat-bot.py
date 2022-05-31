@@ -12,7 +12,7 @@ def answer_user_bot(data, user_id):
         method=const.SEND_METH
     )
     data = {
-        'chat_id': user_id,   # тут я неплохо догадался, что можно вытащить id конкретного юзера)
+        'chat_id': user_id,   # тут я неплохо догадался, что можно вытащить id конкретного юзера)))
         'text': data
     }
 
