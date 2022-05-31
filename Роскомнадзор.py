@@ -19,7 +19,3 @@ for i in were:
         word = word.replace('  ', ' ')
         print(word.strip() + ' ' + i)
         word = word.replace(i, '')
-
-
-print("Вот такие вот дела, колбасник")
-print("Тестируем успешно")
