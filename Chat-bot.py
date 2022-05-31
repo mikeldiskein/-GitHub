@@ -1,7 +1,7 @@
 import requests as r
 import json
 import time
-import pprint
+import pprint # было удобно использовать при работе
 
 import const
 
