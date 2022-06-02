@@ -1,7 +1,7 @@
 import requests as r
 import json
 import time
-import pprint # было удобно использовать при работе
+import pprint  # было удобно использовать при работе
 
 import const
 
@@ -12,7 +12,7 @@ def answer_user_bot(data, user_id):
         method=const.SEND_METH
     )
     data = {
-        'chat_id': user_id,   # тут я неплохо догадался, что можно вытащить id конкретного юзера))) вот такой вот умный
+        'chat_id': user_id,   # тут я неплохо догадался, что можно вытащить id конкретного юзера)
         'text': data
     }
 
@@ -61,17 +61,22 @@ def main():
         needed_part = result[0]
         user_id = needed_part['message']['chat']['id']
 
-        # for elem in result:
-        #     if elem['message']['chat']['id'] == const.MY_ID:
-        #         needed_part = elem
-        #         break
+        url_0 = const.URL.format(token=const.TOKEN, method=const.SEND_METH)
+        first_hello = {
+            'chat_id': user_id,
+            'text': 'Привет! Чтобы узнать погоду в любом городе, просто напиши название этого города! Но ничего другого'
+                    ' писать не нужно, потому что больше пока я ничего не умею :)'
+        }
 
         if const.UPDATE_ID != needed_part['update_id']:
             save_update_id(needed_part)
             message = get_message(needed_part)
-            msg = get_weather(message)
-            answer_user_bot(msg, user_id)
-            print(needed_part['message'])
+            if message == '/start':
+                r.post(url_0, first_hello)
+            else:
+                msg = get_weather(message)
+                answer_user_bot(msg, user_id)
+                print(needed_part['message'])
 
         time.sleep(1)
 
