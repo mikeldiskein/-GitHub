@@ -34,7 +34,7 @@ def game():  # game itself :)
             print('Write please yes or no')
     print(f'{player_1}, is there the carrot in your box?')
     print(input())
-    print(f'{player_2}, do you want to exchange your box with {player_2}?')
+    print(f'{player_2}, do you want to exchange your box with {player_1}?')
     while True:
         answer = input()
         if answer == 'yes':
