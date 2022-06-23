@@ -22,10 +22,10 @@ def parse_weather_data(data):
     weather_state = None
     for elem in data['weather']:
         weather_state = elem['main']
-    temp = round(data['main']['temp'] - 273.15, 1)
+    temp = round(data['main']['temp'] - 273.15)
     city = data['name']
     wind = data['wind']['speed']
-    msg = f'The weather in {city}: temp is {temp}, general state is {weather_state}, wind speed is {wind} m/s'
+    msg = f'Погода в {city}: температура {temp}, общее состояние погоды: {weather_state}, скорость ветра {wind} м/с'
     return msg
 
 
@@ -82,3 +82,4 @@ def main():
 
 if __name__ == '__main__':
   main()
+
