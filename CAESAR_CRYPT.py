@@ -4,7 +4,7 @@ good_answers = ('yes', 'да')
 bad_answers = ('no', 'нет')
 english_lower = s.ascii_lowercase
 english_upper = s.ascii_uppercase
-russian_lower = 'абвгдежзийклмнопрстуфхцшщъыьэюя'
+russian_lower = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
 russian_upper = russian_lower.upper()
 
 
@@ -20,13 +20,11 @@ def continue_game():  # предложение сыграть ещё раз
 
 def crypt(p, k, d):  # сердце программы: алгоритм шифровки
     result = ''
-    if d == 'encrypt' or 'шифровка':
+    if d in ('encrypt', 'шифровка'):
         for i in p:
             if not i.isalpha:
                 result += i
             elif i in s.punctuation:
-                result += i
-            elif i == ' ':
                 result += i
             elif i in english_upper:
                 ind = english_upper.find(i)
@@ -36,13 +34,17 @@ def crypt(p, k, d):  # сердце программы: алгоритм шиф�
                 result += english_lower[(ind + k) % 26]
             elif i in russian_upper:
                 ind = russian_upper.find(i)
-                result += russian_upper[(ind + k) % 31]
+                result += russian_upper[(ind + k) % 32]
             elif i in russian_lower:
                 ind = russian_lower.find(i)
-                result += russian_lower[(ind + k) % 31]
-    elif d == 'decrypt' or 'дешифровка':
+                result += russian_lower[(ind + k) % 32]
+            elif i.isdigit:
+                result += i
+    elif d in ('decrypt', 'дешифровка'):
         for i in p:
             if not i.isalpha:
+                result += i
+            elif i in s.punctuation:
                 result += i
             elif i in english_upper:
                 ind = english_upper.find(i)
@@ -52,10 +54,12 @@ def crypt(p, k, d):  # сердце программы: алгоритм шиф�
                 result += english_lower[(ind - k) % 26]
             elif i in russian_upper:
                 ind = russian_upper.find(i)
-                result += russian_upper[(ind - k) % 31]
+                result += russian_upper[(ind - k) % 32]
             elif i in russian_lower:
                 ind = russian_lower.find(i)
-                result += russian_lower[(ind - k) % 31]
+                result += russian_lower[(ind - k) % 32]
+            elif i.isdigit:
+                result += i
     return result
 
 
