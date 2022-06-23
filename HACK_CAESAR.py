@@ -4,7 +4,7 @@ good_answers = ('yes', 'да')
 bad_answers = ('no', 'нет')
 english_lower = s.ascii_lowercase
 english_upper = s.ascii_uppercase
-russian_lower = 'абвгдежзийклмнопрстуфхцшщъыьэюя'
+russian_lower = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
 russian_upper = russian_lower.upper()
 
 
@@ -26,9 +26,7 @@ def hack(phrase, language):
         for k in range(1, 27):
             result = ''
             for i in phrase:
-                if not i.isalpha:
-                    result += i
-                elif i in s.punctuation:
+                if i in s.punctuation:
                     result += i
                 elif i == ' ':
                     result += i
@@ -38,14 +36,14 @@ def hack(phrase, language):
                 elif i in english_upper:
                     ind = english_upper.find(i)
                     result += english_upper[(ind - k)]
+                elif i.isdigit():
+                    result += i
             results.append(result)
     else:
         for k in range(1, 33):
             result = ''
             for i in phrase:
-                if not i.isalpha:
-                    result += i
-                elif i in s.punctuation:
+                if i in s.punctuation:
                     result += i
                 elif i == ' ':
                     result += i
@@ -55,8 +53,11 @@ def hack(phrase, language):
                 elif i in russian_upper:
                     ind = russian_upper.find(i)
                     result += russian_upper[(ind - k)]
+                elif i.isdigit():
+                    result += i
             results.append(result)
-    return results
+    print(f'{k} вариантов:')
+    print(*results, sep='\n')
 
 
 def game():
@@ -64,7 +65,7 @@ def game():
     while language not in ('en', 'ru'):
         language = input('Write please en or ru')
     phrase = input('Write any word or phrase which you want to hack')
-    print(*hack(phrase, language), sep='\n')
+    hack(phrase, language)
     if continue_game():
         game()
     else:
@@ -75,7 +76,8 @@ def begin():
     print('Hello you! It is Feinman again and I suggest you to hack some word or phrase '
           'from Caesar Crypt to your language. You can hack into english and into russian '
           'too')
-    answer = input("Do you want to try? Write 'yes'('да') or 'no'('нет')").lower()
+    print("Do you want to try? Write 'yes'('да') or 'no'('нет')")
+    answer = input()
     while True:
         if answer in good_answers:
             game()
