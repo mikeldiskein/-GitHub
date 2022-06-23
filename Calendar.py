@@ -23,9 +23,9 @@ while True:
 
 
 def generate_calendar(month, year):
-    cal_text = ''  # here it will be a calendar in text type
-    cal_text += (' ' * 25) + months[month - 1] + ' ' + year + '\n'
-    cal_text += '...SUN.....MON.....TUE.....WED.....THU.....FRI.....SAT...\n'
+    hat = ''  # here it will be a calendar in text type
+    hat += (' ' * 25) + months[month - 1] + ' ' + year + '\n'
+    hat += '...SUN.....MON.....TUE.....WED.....THU.....FRI.....SAT...\n'
     week_separator = ('+-------' * 7) + '+\n'  # string-separator
     empty_row = ('|       ' * 7) + '|\n'
 
@@ -33,7 +33,7 @@ def generate_calendar(month, year):
     while current_date.weekday() != 6:  # because Sunday in weekday code is 6
         current_date -= timedelta(days=1)
     while True:  # pass by the loop along all weeks in the month
-        cal_text += week_separator
+        hat += week_separator
 
         day_number_row = ''  # the row with marks of the days numbers
         for i in range(7):
@@ -41,15 +41,15 @@ def generate_calendar(month, year):
             day_number_row += '|' + day_number_mark + (' ' * 5)
             current_date += timedelta(days=1)
         day_number_row += '|\n'
-        cal_text += day_number_row
+        hat += day_number_row
         for i in range(3):
-            cal_text += empty_row
+            hat += empty_row
 
         if current_date.month != month:
             break
 
-    cal_text += week_separator
-    return cal_text
+    hat += week_separator
+    return hat
 
 
 cal_text = generate_calendar(month, year)
