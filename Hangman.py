@@ -101,7 +101,7 @@ def play(word):
     word_completion = '_' * len(word)
     guessed = False
     guessed_letters = ''
-    guessed_words = ''
+    guessed_words = []
     tries = 6
     print("Давайте играть в угадайку слов!")
     print(display_hangman(tries))
@@ -131,21 +131,21 @@ def play(word):
                 print("Ты угадал слово! Поздравляю!")
                 print(word)
                 break
-        elif answer in word_list and len(answer) > 1:
+        elif answer == word:
             guessed = True
             print("Ты угадал слово! Поздравляю!")
             print(word)
             break
-        elif not answer in word and len(answer) == 1:
-            guessed_letters += answer
+        elif answer != word and len(answer) > 1:
             guessed = False
-            print("Не угадал!")
+            guessed_words.append(answer)
+            print('Не угадал!')
             print(word_completion)
             if not guessed:
                 tries -= 1
             print(display_hangman(tries))
-        elif not answer in word_list and len(answer) > 1:
-            guessed_words += answer
+        elif not answer in word and len(answer) == 1:
+            guessed_letters += answer
             guessed = False
             print("Не угадал!")
             print(word_completion)
