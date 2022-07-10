@@ -1,5 +1,7 @@
 import turtle as t
-from random import randrange, choice
+from random import randrange
+
+
 
 t.Screen().colormode(255)
 t.Screen().screensize(500, 500)
