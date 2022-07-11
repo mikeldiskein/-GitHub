@@ -55,7 +55,7 @@ class Square:
     def draw(self):
         t.begin_fill()
         for _ in range(4):
-            t.forward(self.side * 1)
+            t.forward(self.side)
             t.left(180 - self.angle)
         t.end_fill()
         t.setheading(0)
