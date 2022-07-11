@@ -1,18 +1,18 @@
 import turtle as t
-from random import randint, choice
+from random import choice, randrange
 import time
 from math import tan, radians, sqrt
 
 SQUARE = 43.301270189221945  # float-type
 
-horizon_figure_number = int(input())
-vertical_figure_number = int(input())
+horizon_figure_number = 5
+vertical_figure_number = 5
 t.Screen().screensize(500, 500)
 
 
 def side_calculate(side_number):  # side length calculating
     a = 4 * tan((radians(180)) / side_number)
-    b = float(input()) * a
+    b = SQUARE * a
     x_square = b / 3
     return sqrt(x_square)
 
@@ -49,7 +49,7 @@ class Triangle:
         t.begin_fill()
         for _ in range(3):
             t.forward(self.side)
-            t.right(60)
+            t.right(self.angle)
         t.end_fill()
 
 
@@ -61,10 +61,98 @@ class Square:
 
     def draw(self):
         t.begin_fill()
-        for _ in range(3):
+        for _ in range(4):
             t.forward(self.side)
-            t.right(60)
+            t.left(self.angle)
         t.end_fill()
+
+
+class Pentagon:
+    def __init__(self):
+        self.side_number = 5
+        self.side = side_calculate(self.side_number)
+        self.angle = angle_calculate(self.side_number)
+
+    def draw(self):
+        t.begin_fill()
+        for _ in range(5):
+            t.forward(self.side)
+            t.left(self.angle)
+        t.end_fill()
+
+
+class Hexagon:
+    def __init__(self):
+        self.side_number = 6
+        self.side = side_calculate(self.side_number)
+        self.angle = angle_calculate(self.side_number)
+
+    def draw(self):
+        t.begin_fill()
+        for _ in range(6):
+            t.forward(self.side)
+            t.left(self.angle)
+        t.end_fill()
+
+
+class Heptagon:
+    def __init__(self):
+        self.side_number = 7
+        self.side = side_calculate(self.side_number)
+        self.angle = angle_calculate(self.side_number)
+
+    def draw(self):
+        t.begin_fill()
+        for _ in range(7):
+            t.forward(self.side)
+            t.left(self.angle)
+        t.end_fill()
+
+
+class Octagon:
+    def __init__(self):
+        self.side_number = 8
+        self.side = side_calculate(self.side_number)
+        self.angle = angle_calculate(self.side_number)
+
+    def draw(self):
+        t.begin_fill()
+        for _ in range(8):
+            t.forward(self.side)
+            t.left(self.angle)
+        t.end_fill()
+
+
+draws = [Triangle, Square, Pentagon, Hexagon, Heptagon, Octagon]
+
+
+def time_track(func):
+    begin = time.time()
+    func(draws)
+    end = time.time()
+    print(end - begin)
+
+
+@time_track
+def run(lst):
+    for _ in range(horizon_figure_number * vertical_figure_number):
+        t.colormode(255)
+        t.tracer(2)
+        t.speed(5)
+        t.Screen().bgcolor('white')
+        color = randrange(256), randrange(256), randrange(256)
+        t.pencolor(color)
+        t.fillcolor(color)
+        t.penup()
+        t.goto(coordinates_for_concrete_figure())
+        figure = choice(lst)
+        figure.draw(self=figure)
+
+
+
+
+
+
 
 
 
