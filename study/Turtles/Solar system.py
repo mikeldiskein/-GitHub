@@ -1,3 +1,4 @@
+import turtle
 import turtle as t
 from math import sin, cos
 import random as r
@@ -5,8 +6,8 @@ import random as r
 t.Screen().bgcolor('black')
 # t.Screen().bgpic('hubble2019_01.png')
 t.Screen().screensize(1500, 750)
-t.speed(10)
-t.tracer(2)
+# t.speed(10)
+t.tracer(8, 0)
 t.colormode(255)
 t.hideturtle()
 
@@ -31,7 +32,7 @@ def get_coordinates(planet):
 
 
 def stars():
-    t.color(205, 173, 0)
+    t.color('white')
     for _ in range(400):
         t.penup()
         t.pensize(r.uniform(0, 0.01))
@@ -105,6 +106,37 @@ class SaturnRing:
         pass
 
 
+cm = turtle.Turtle()
+
+cm.hideturtle()
+# cm.speed(10)
+
+
+class Comet:
+    def __init__(self):
+        self.size = 30
+        self.color = 'white'
+        self.tail_length = 15
+        self.tail_color = 'orange'
+
+    def tail(self):
+        width = self.size - 10
+        length = self.tail_length
+        cm.pencolor(self.tail_color)
+        cm.penup()
+        cm.forward(width/2)
+        cm.pendown()
+        while width != 0:
+            cm.pensize(width)
+            cm.forward(length)
+            width -= 1
+
+    def draw(self):
+        cm.setheading(0)
+        cm.dot(self.size, self.color)
+        self.tail()
+
+
 def main():
     stars()
     solar = Solar()
@@ -112,6 +144,14 @@ def main():
     for key, val in planets.items():
         planet = Planet(name=val[0], radius=val[1], color=val[2], coordinates=val[3])
         planet.draw()
+    for i in range(1, 1101):
+        cm.penup()
+        cm.goto(500 - i, 300)
+        comet = Comet()
+        cm.pendown()
+        comet.draw()
+        t.tracer(50)
+        cm.clear()
 
     t.mainloop()
 
