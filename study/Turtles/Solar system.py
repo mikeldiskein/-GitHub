@@ -144,13 +144,13 @@ def main():
     for key, val in planets.items():
         planet = Planet(name=val[0], radius=val[1], color=val[2], coordinates=val[3])
         planet.draw()
-    for i in range(1, 1101):
+    for i in range(1, 1051):
         cm.penup()
-        cm.goto(500 - i, 300)
+        cm.goto(500 - i, 300 - i/8)
         comet = Comet()
         cm.pendown()
         comet.draw()
-        t.tracer(50)
+        t.tracer(40)
         cm.clear()
 
     t.mainloop()
