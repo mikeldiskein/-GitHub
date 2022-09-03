@@ -10,7 +10,7 @@ def from_ly_to_km(distance):
 
 
 def acc_time(boost_limit):
-    acceleration_time = boost_limit / 0.01
+    acceleration_time = boost_limit / ACCELERATION
     return acceleration_time
 
 
@@ -25,9 +25,9 @@ def time_to_planet_system_calculator(distance, engine_type):
         distance -= distance_1
         full_speed_time = distance / engines['AM']
         main_time = acc_time(engines['AM']) * 2 + full_speed_time
-        hours = round((main_time / 3600), 2)
-        days = round((hours / 24), 2)
-        years = round((days / 365), 2)
+        hours = round((main_time / 3600), 1)
+        days = round((hours / 24), 1)
+        years = round((days / 365), 1)
         print(f'The cosmic travel to chosen planet system will take {main_time} seconds or '
               f'{hours} '
               f'hours or {days} days or {years} years')
@@ -44,5 +44,10 @@ def time_to_planet_system_calculator(distance, engine_type):
               f'hours or {days} days or {years} years')
 
 
-time_to_planet_system_calculator(from_ly_to_km(float(input())), engine_type=input())
+print('Put in the distance you have (in light years)')
+distance_in_ly = float(input())
+print('Put in the type of the engine you have (AM or EM)')
+engine_type = input()
+
+time_to_planet_system_calculator(from_ly_to_km(distance_in_ly), engine_type=engine_type)
 
